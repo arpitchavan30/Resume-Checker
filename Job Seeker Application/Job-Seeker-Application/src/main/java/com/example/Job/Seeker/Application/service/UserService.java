@@ -64,7 +64,7 @@ public class UserService {
         throw new UserException("User not found or already deactivated");
     }
 
-    @Transactional
+
     public void deleteUser(Long userId) {
         Optional<User> optionalUser = userRepository.findById(userId);
 

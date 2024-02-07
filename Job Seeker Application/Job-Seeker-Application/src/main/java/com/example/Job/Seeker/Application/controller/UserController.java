@@ -29,20 +29,20 @@ public class UserController {
         return users;
     }
 
-    @PutMapping("/update/{userId}")
+    @PutMapping("/updateUser/{userId}")
     public ResponseEntity<User> updateUser(@PathVariable Long userId, @RequestBody User updatedUser) {
         User user=userService.updateUser(userId, updatedUser);
         return new ResponseEntity(user,HttpStatus.OK);
     }
 
-    @PutMapping("/deactivate/{userId}")
+    @PutMapping("/deactivateUser/{userId}")
     public ResponseEntity<User> deactivateUser(@PathVariable Long userId){
         User response=userService.deactivateUser(userId);
 
         return new ResponseEntity<>(response,HttpStatus.OK);
     }
 
-    @DeleteMapping("/delete/{userId}")
+    @DeleteMapping("/deleteUser/{userId}")
     public ResponseEntity<String> deleteUser(@PathVariable Long userId) {
         userService.deleteUser(userId);
         return ResponseEntity.ok("User deleted successfully");
