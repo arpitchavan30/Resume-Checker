@@ -1,3 +1,14 @@
+
+
+
+# Overview
+==> Created a fronted website used local storage to store the data 
+==> While your checking befor log in admin details with  username : admin , password:password
+==> Befor checking login functions please registe with user registed page and create  employe so data will be stored in local storage 
+==> out backend team has created backend code but they failed ro give me apis so i used local storage to it
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
