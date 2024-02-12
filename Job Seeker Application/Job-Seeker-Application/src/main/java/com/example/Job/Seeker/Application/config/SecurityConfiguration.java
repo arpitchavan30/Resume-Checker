@@ -14,8 +14,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import org.springframework.security.web.authentication.logout.LogoutHandler;
 
 import static com.example.Job.Seeker.Application.controller.Permission.*;
-import static com.example.Job.Seeker.Application.controller.Role.ADMIN;
-import static com.example.Job.Seeker.Application.controller.Role.CLIENT;
+import static com.example.Job.Seeker.Application.controller.Role.*;
 import static org.springframework.http.HttpMethod.*;
 import static org.springframework.http.HttpMethod.DELETE;
 import static org.springframework.security.config.http.SessionCreationPolicy.STATELESS;
@@ -48,11 +47,11 @@ public class SecurityConfiguration {
                 .authorizeHttpRequests(req ->
                         req.requestMatchers(WHITE_LIST_URL)
                                 .permitAll()
-                                .requestMatchers("/api/v1/management/**").hasAnyRole(ADMIN.name(), CLIENT.name())
-                                .requestMatchers(GET, "/api/v1/management/**").hasAnyAuthority(ADMIN_READ.name(), CLIENT_READ.name())
-                                .requestMatchers(POST, "/api/v1/management/**").hasAnyAuthority(ADMIN_CREATE.name(), CLIENT_CREATE.name())
-                                .requestMatchers(PUT, "/api/v1/management/**").hasAnyAuthority(ADMIN_UPDATE.name(), CLIENT_UPDATE.name())
-                                .requestMatchers(DELETE, "/api/v1/management/**").hasAnyAuthority(ADMIN_DELETE.name(), CLIENT_DELETE.name())
+                                .requestMatchers("/api/v1/management/**").hasAnyRole(ADMIN.name(), CLIENT.name(), USER.name())
+                                .requestMatchers(GET, "/api/v1/management/**").hasAnyAuthority(ADMIN_READ.name(), CLIENT_READ.name(), USER_READ.name())
+                                .requestMatchers(POST, "/api/v1/management/**").hasAnyAuthority(ADMIN_CREATE.name(), CLIENT_CREATE.name(), USER_CREATE.name())
+                                .requestMatchers(PUT, "/api/v1/management/**").hasAnyAuthority(ADMIN_UPDATE.name(), CLIENT_UPDATE.name(), USER_UPDATE.name())
+                                .requestMatchers(DELETE, "/api/v1/management/**").hasAnyAuthority(ADMIN_DELETE.name(), CLIENT_DELETE.name(), USER_DELETE.name())
                                 .anyRequest()
                                 .authenticated()
                 )

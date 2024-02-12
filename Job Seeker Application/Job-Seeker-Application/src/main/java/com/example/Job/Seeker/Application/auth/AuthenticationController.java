@@ -2,6 +2,7 @@ package com.example.Job.Seeker.Application.auth;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -15,6 +16,7 @@ import java.io.IOException;
 
 public class AuthenticationController {
 
+    @Autowired
     private  AuthenticationService service;
 
     @PostMapping("/register")

@@ -13,7 +13,11 @@ public enum Permission {
     CLIENT_READ("management:read"),
     CLIENT_UPDATE("management:update"),
     CLIENT_CREATE("management:create"),
-    CLIENT_DELETE("management:delete")
+    CLIENT_DELETE("management:delete"),
+    USER_READ("management:read"),
+    USER_UPDATE("management:update"),
+    USER_CREATE("management:create"),
+    USER_DELETE("management:delete")
 
     ;
 

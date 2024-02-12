@@ -11,7 +11,7 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping ("/api/v1/users")
+@RequestMapping ("/api/v1/auth")
 public class UserController {
     @Autowired
     private UserService userService;
@@ -21,6 +21,7 @@ public class UserController {
 //       User response=userService.createUser(userObj);
 //        return new  ResponseEntity(response,HttpStatus.CREATED );
 //    }
+
 
     @GetMapping("/getAllUser")
     public List<User> getAllUser(){
