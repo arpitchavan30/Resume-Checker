@@ -1,26 +1,40 @@
 package com.example.Job.Seeker.Application.model;
 
+import com.example.Job.Seeker.Application.controller.Role;
+import com.example.Job.Seeker.Application.token.Token;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.ArrayList;
-import java.util.HashSet;
+import java.util.Collection;
 import java.util.List;
-import java.util.Set;
 
 @Entity
-public class User {
+@Table(name = "_user")
+@FieldDefaults(level = AccessLevel.PRIVATE)
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
+@Builder
+public class User implements UserDetails {
     @Id
     @GeneratedValue (strategy  = GenerationType.AUTO)
-    private Long id;
+    private Integer id;
 
-    private String username;
+    private String firstname;
+    private String lastname;
+
     private String organization;
     private String registrationNumber;
     private String email;
     private String password;
-    private boolean active;
+    private boolean active=true;
+
+    @Enumerated(EnumType.STRING)
+    private Role role;
 
     @OneToMany(mappedBy = "users",cascade = CascadeType.ALL)
     private List<Client> clients=new ArrayList<>();
@@ -29,101 +43,45 @@ public class User {
     private List<Agent> agents=new ArrayList<>();
 
     @OneToMany(mappedBy = "users",cascade=CascadeType.ALL)
-    private List<Role> roles=new ArrayList<>();
+    private List<UserRole> userRoles =new ArrayList<>();
 
-    public User() {
+    @OneToMany(mappedBy = "user")
+    private List<Token> tokens;
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return role.getAuthorities();
     }
 
-    public User(Long id, String username, String organization, String registrationNumber, String email, String password, boolean active, List<Client> clients, List<Agent> agents, List<Role> roles) {
-        this.id = id;
-        this.username = username;
-        this.organization = organization;
-        this.registrationNumber = registrationNumber;
-        this.email = email;
-        this.password = password;
-        this.active = active;
-        this.clients = clients;
-        this.agents = agents;
-        this.roles = roles;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getOrganization() {
-        return organization;
-    }
-
-    public void setOrganization(String organization) {
-        this.organization = organization;
-    }
-
-    public String getRegistrationNumber() {
-        return registrationNumber;
-    }
-
-    public void setRegistrationNumber(String registrationNumber) {
-        this.registrationNumber = registrationNumber;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
+    @Override
     public String getPassword() {
         return password;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    @Override
+    public String getUsername() {
+        return email;
     }
 
-    public List<Client> getClients() {
-        return clients;
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
     }
 
-    public void setClients(List<Client> clients) {
-        this.clients = clients;
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
     }
 
-    public List<Role> getRoles() {
-        return roles;
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
     }
 
-    public void setRoles(List<Role> roles) {
-        this.roles = roles;
+    @Override
+    public boolean isEnabled() {
+        return true;
     }
 
-    public boolean isActive() {
-        return active;
-    }
 
-    public void setActive(boolean active) {
-        this.active = active;
-    }
-
-    public List<Agent> getAgents() {
-        return agents;
-    }
-
-    public void setAgents(List<Agent> agents) {
-        this.agents = agents;
-    }
 }

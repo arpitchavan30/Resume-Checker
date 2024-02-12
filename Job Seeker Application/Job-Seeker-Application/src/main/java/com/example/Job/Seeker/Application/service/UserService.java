@@ -1,11 +1,10 @@
 package com.example.Job.Seeker.Application.service;
+
 import com.example.Job.Seeker.Application.exception.UserException;
 import com.example.Job.Seeker.Application.model.User;
 import com.example.Job.Seeker.Application.repository.UserRepository;
-import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.ResponseStatus;
 
 import java.util.List;
 import java.util.Optional;
@@ -16,14 +15,14 @@ public class UserService {
     private UserRepository userRepository;
 
 
-    public User createUser(User user) {
+//    public User createUser(User user) {
+//
+//         User savedUser=userRepository.save(user);
+//
+//        return savedUser;
+//    }
 
-         User savedUser=userRepository.save(user);
-
-        return savedUser;
-    }
-
-    public User updateUser(Long userId, User updatedUser) {
+    public User updateUser(Integer userId, User updatedUser) {
         Optional<User> optional=userRepository.findById(userId);
 
         if(optional.isPresent() == false){
@@ -35,7 +34,8 @@ public class UserService {
         user.setEmail(updatedUser.getEmail());
         user.setOrganization(updatedUser.getOrganization());
         user.setPassword(updatedUser.getPassword());
-        user.setUsername(updatedUser.getUsername());
+        user.setFirstname(updatedUser.getFirstname());
+        user.setLastname(updatedUser.getLastname());
         user.setRegistrationNumber(updatedUser.getRegistrationNumber());
 
         User savedResponse=userRepository.save(user);
@@ -49,7 +49,7 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    public User deactivateUser(Long userId){
+    public User deactivateUser(Integer userId){
         Optional<User> optionalUser=userRepository.findByIdAndActiveTrue(userId);
 
         if(optionalUser.isPresent()){
@@ -65,7 +65,7 @@ public class UserService {
     }
 
 
-    public void deleteUser(Long userId) {
+    public void deleteUser(Integer userId) {
         Optional<User> optionalUser = userRepository.findById(userId);
 
         if (optionalUser.isPresent()) {

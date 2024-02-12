@@ -11,16 +11,16 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping ("/api/v1")
+@RequestMapping ("/api/v1/users")
 public class UserController {
     @Autowired
     private UserService userService;
 
-    @PostMapping ("/createUser")
-    public ResponseEntity<User> createUser(@RequestBody   User userObj) {
-       User response=userService.createUser(userObj);
-        return new  ResponseEntity(response,HttpStatus.CREATED );
-    }
+//    @PostMapping ("/createUser")
+//    public ResponseEntity<User> createUser(@RequestBody   User userObj) {
+//       User response=userService.createUser(userObj);
+//        return new  ResponseEntity(response,HttpStatus.CREATED );
+//    }
 
     @GetMapping("/getAllUser")
     public List<User> getAllUser(){
@@ -30,20 +30,20 @@ public class UserController {
     }
 
     @PutMapping("/updateUser/{userId}")
-    public ResponseEntity<User> updateUser(@PathVariable Long userId, @RequestBody User updatedUser) {
+    public ResponseEntity<User> updateUser(@PathVariable Integer userId, @RequestBody User updatedUser) {
         User user=userService.updateUser(userId, updatedUser);
         return new ResponseEntity(user,HttpStatus.OK);
     }
 
     @PutMapping("/deactivateUser/{userId}")
-    public ResponseEntity<User> deactivateUser(@PathVariable Long userId){
+    public ResponseEntity<User> deactivateUser(@PathVariable Integer userId){
         User response=userService.deactivateUser(userId);
 
         return new ResponseEntity<>(response,HttpStatus.OK);
     }
 
     @DeleteMapping("/deleteUser/{userId}")
-    public ResponseEntity<String> deleteUser(@PathVariable Long userId) {
+    public ResponseEntity<String> deleteUser(@PathVariable Integer userId) {
         userService.deleteUser(userId);
         return ResponseEntity.ok("User deleted successfully");
     }
