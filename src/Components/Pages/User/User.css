@@ -1,0 +1,43 @@
+
+
+#user{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+#user-form{
+    background-color: var(--grey);
+    width: 70%;
+    padding: 20px;
+    border: 1px solid var(--black);
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(46, 44, 44, 0.333);
+}
+#user-div-select{
+    width: 100%;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    outline: none;
+}
+#btn{
+    background-color: var(--black);
+   border: 2px solid var(--green);
+   color: var(--white);
+   padding: 0.5rem 0.5rem;
+   border-radius: 3rem;
+   font-weight: 600;
+   cursor: pointer;
+   text-align: center;
+   min-width: 60px;
+   max-width: 120px;
+    text-transform: capitalize;
+}
+#btn:hover{
+    background-color: var(--green);
+ 
+  box-shadow: 5px 5px 10px rgba(22, 129, 61, 0.5);
+   transition: all 0.3s;
+}

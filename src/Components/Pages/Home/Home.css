@@ -1,0 +1,21 @@
+
+
+
+#home-top{
+ display: flex;
+  justify-content: space-between;
+  margin: 1rem 1.5rem;
+  align-items: center;
+  gap: 20px;
+}
+
+#home-right{
+  
+    flex: 1;
+    
+}
+#home-left{
+    font-size: 40px;
+    flex: 1;
+    background-color: var(--black);
+}

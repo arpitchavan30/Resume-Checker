@@ -1,0 +1,36 @@
+#admin-login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    width:auto;
+    height: 40vh;
+  }
+  
+  #admin-login-form {
+    background-color: var(--grey);
+    width: 70%;
+    padding: 20px;
+    border: 1px solid var(--black);
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(46, 44, 44, 0.333);
+  }
+  
+  .admin-div {
+    margin-bottom: 10px;
+  }
+  
+  .admin-div label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+  
+  .admin-div input {
+    width: 100%;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    outline: none;
+  }
